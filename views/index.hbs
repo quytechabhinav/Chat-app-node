@@ -1,0 +1,103 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="https://fonts.googleapis.com/css?family=Nunito+Sans:300i,400,700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/5.0.0-alpha1/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+    <title>{{name}}</title>
+    <style>
+        body {
+            padding: 0;
+            margin: 0;
+            height: 100vh;
+            font-family: "Nunito Sans";
+        }
+
+        .form-control {
+            line-height: 2;
+        }
+
+        .bg-custom {
+            background-color: #6C63FF;
+        }
+
+        .btn-custom {
+            background-color: #3e3d56;
+            color: #fff;
+        }
+
+        .btn-custom:hover {
+            background-color: #33313f;
+            color: #fff;
+        }
+
+        label {
+            color: #fff;
+        }
+
+        a,
+        a:hover {
+            color: #fff;
+            text-decoration: none;
+        }
+
+        a,
+        a:hover {
+            text-decoration: none;
+        }
+
+        @media(max-width: 932px) {
+            .display-none {
+                display: none !important;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="row m-0 h-100">
+        <div class="col p-0 text-center d-flex justify-content-center align-items-center display-none">
+            <img src="login.svg" class="w-100">
+        </div>
+        <div class="col p-0 bg-custom d-flex justify-content-center align-items-center flex-column w-100">
+            <h1><label class="form-check-label">{{name}}</label></h1>
+            {{#if error}}
+                <div class="alert alert-danger alert-dismissible">
+                    <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+                         {{this.error}}
+                </div>
+             {{else}}
+              {{/if}}
+            <form class="w-75" action="user/passportlogin" method="POST">
+            <input type="hidden" name="_csrf" value="{{crfToken}}"/>
+                <div class="mb-3">
+                    <label for="exampleFormControlInput1" class="form-label">Username</label>
+                    <input type="text" class="form-control" name="email" id="exampleFormControlInput1" placeholder="Email"
+                        required>
+                </div>
+                <div class="mb-3">
+                    <label for="exampleFormControlInput2" class="form-label">Password</label>
+                    <input type="password" id="password" name="password" class="form-control" placeholder="password"
+                        required>
+                </div>
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="form-check">
+                            <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
+                            <label class="form-check-label" for="flexCheckDefault">
+                                Keep me logged in
+                            </label>
+                        </div>
+                    </div>
+                </div>
+                <button type="submit" class="btn btn-custom btn-lg btn-block mt-3">Login</button>
+            </form>
+            <a href="user/singhup" target="_blank">For new user</a>
+        </div>
+    </div>
+</body>
+
+</html>

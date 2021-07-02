@@ -1,0 +1,30 @@
+{{> header}} 
+
+<table id="example" class="table table-striped table-bordered" style="width:100%">
+        <thead>
+            <tr>
+                <th>Name</th>
+                <th>Email</th>
+                <th>Mobile No</th>
+                <th>created_at</th>
+            </tr>
+        </thead>
+        <tbody>
+            {{#if userdata}}
+       {{#each userdata}}
+            <tr>
+                <td>{{capitalize  username}}</td>
+                <td>{{email}}</td>
+                <td>{{mobile}}</td>
+                <td>{{created_at}}</td>
+                
+            </tr>
+          {{/each }}
+          {{/if}}
+         
+           
+           
+        </tbody>
+    </table>
+
+     {{> footer}}

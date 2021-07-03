@@ -2,7 +2,7 @@
 This is a node.js chat application powered by SockJS,Express,.hbs,css,mongoDB etc that provides the following functions .
 
 # Features
-1)Add new users
+1)Add new users <br/>
 2)Login
 3)Auth
 4)crf token

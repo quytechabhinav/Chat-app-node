@@ -22,4 +22,5 @@ Clone this repo to your desktop and run npm install to install all the dependenc
 
 You might want to look into config.json to make change the MongoDB details.
 
-
+# Donation:
+https://www.buymeacoffee.com/quytechabhinav

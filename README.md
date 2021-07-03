@@ -17,7 +17,7 @@ This is a node.js chat application powered by SockJS,Express,.hbs,css,mongoDB et
 12)backup of chat <br/>
 13) delete my account and all chat <br/>
 
-#Setup
+# Setup
 Clone this repo to your desktop and run npm install to install all the dependencies.
 
 You might want to look into config.json to make change the MongoDB details.

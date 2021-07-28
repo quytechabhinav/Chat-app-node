@@ -11,6 +11,7 @@ const cookieparser = require("cookie-parser");
 const expresssession = require("express-session");
 const csrf=require("csurf");
 const flash=require("connect-flash");
+const { Socket } = require("dgram");
 var helpers = require('handlebars-helpers')();
 const app =express();
 
@@ -32,9 +33,9 @@ app.use(urlencoded);
 require("./config/passportlocal")(passport);
 
 //port config
-const port =process.env.port || 3000;
+const port =process.env.port || 8000;
 
-app.use(express.static('views/assets/image')); 
+app.use(express.static('views/assets')); 
 
 app.engine('.hbs', hbs.engine);
 app.set('view engine', 'hbs');
@@ -43,7 +44,7 @@ app.use(cookieparser("randomKey"));
 app.use(expresssession({
   secret:"randomKey",
   resave:true,
-  //save:true,
+  saveUninitialized: true,
   maxAge :24*60*60*1000,//milli second
 }));
 app.use(csrf({cookie: false,}));
@@ -62,11 +63,28 @@ app.use('/chating',chating);
 
 
 app.get('/',(req,res)=>{
+ 
+    
 	res.render("index",{
     name:"User Login",
     crfToken:req.csrfToken(),
   });
 })
-app.listen(port, () => {
+
+//for app listner
+var server=app.listen(port, () => {
   console.log(`Example app listening at http://localhost:${port}`)
 })
+
+//socket code
+
+var io = require('socket.io')(server);
+io.on('connection', (Socket) => {
+   console.log("Socket server connected..");
+   Socket.on('message',(msg)=>{
+    console.log(msg);
+    Socket.broadcast.emit('message',msg);
+   })
+
+  
+  });

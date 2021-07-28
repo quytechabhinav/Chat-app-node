@@ -7,6 +7,7 @@ const user = require("../models/users");
 const passport=require("passport");
 const User = require("../models/users");
 require('../config/passportlocal')(passport);
+const multer = require('multer');
 const app = express();
 
 // /user/singhup
@@ -55,7 +56,7 @@ router.post('/singhup',async(req,res)=>{
 				res.redirect('/');
 			}
 			catch(e) {
-				console.log(e);
+				//console.log(e);
 			}
 		}
 	}			
@@ -67,6 +68,7 @@ router.post('/passportlogin',(req,res,next)=>{
 		successRedirect:'get_all_users',
 		failureRedirect:'/'	,
 		failureFlash:true,	
+		successFlash: 'Welcome!',
 	})(req,res,next);
 	});
 	//logout
@@ -97,14 +99,77 @@ router.get('/get_all_users',checkAuth,async(req,res,next)=>{
 		crfToken:req.csrfToken(),
 	  });
 });
-
+//edit users 
+router.get('/edit_users/:id/edit',checkAuth,async(req,res,next)=>{
+var data=await User.findOne({"_id":req.params.id});
+const edit_data=({
+	_id:data.id,
+	username:data.username,
+	email:data.email,
+	mobile:data.mobile,
+});
+    res.render('user/edit_profile', {
+		name:"Edit Profile",
+		udata:edit_data,
+		crfToken:req.csrfToken(),
+	});
+});
+//for upload
+var storage =   multer.diskStorage({  
+	destination: function (req, file, callback) {  
+	  callback(null, './uploads');  
+	},  
+	filename: function (req, file, callback) {  
+	  callback(null, file.originalname);  
+	}  
+  });  
+  var upload = multer({ storage : storage}).single('myfile');  
+//update user data
+router.post('/update_users',checkAuth,async(req,res)=>{
+	console.log(req);
+	User.findOne({"_id":req.query._id})
+    .then((User) => {
+      if (!User) {
+        req.flash("error_msg", "user not found");
+        //res.redirect("/users/doctor-profile");
+      }
+      if (typeof req.query.mobile !== "undefined") {
+        User.mobile = req.query.mobile;
+      }
+	  if (typeof req.query.myfile !== "undefined") {
+        User.profileimage = req.query.myfile;
+      }  
+	  User.save(function (err, resolve) {
+		if(err)
+		  console.log('db error', err)
+		   else{
+			upload(req,res,function(err) {  
+				if(err) {  
+					return res.end("Error uploading file.");  
+				}  
+			});  
+			req.flash("success_msg", "details updated successfully");
+			res.redirect("get_all_users");
+		   }
+		 });
+     
+      })
+    .catch((err) => console.log(err));	
+});
 
 
 //wild card roughting
 router.get('*',(req,res)=>{
 	var reqobj={
 		"status" : 400,
-		"message" : "URL Not Found for ,Get request"
+		"message" : "URL Not Found for ,Get request Abhinav"
+	}
+res.send(reqobj);
+});
+router.put('*',(req,res)=>{
+	var reqobj={
+		"status" : 400,
+		"message" : "URL Not Found for ,Put request Abhinav"
 	}
 res.send(reqobj);
 });

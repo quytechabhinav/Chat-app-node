@@ -3,62 +3,17 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link href="https://fonts.googleapis.com/css?family=Nunito+Sans:300i,400,700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/5.0.0-alpha1/css/bootstrap.min.css">
+    <link href="css/font.css" rel="stylesheet">
+     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/5.0.0-alpha1/css/bootstrap.min.css">
+      <link rel="stylesheet" href="/css/login.css">
     <title>{{name}}</title>
-    <style>
-        body {
-            padding: 0;
-            margin: 0;
-            height: 100vh;
-            font-family: "Nunito Sans";
-        }
-
-        .form-control {
-            line-height: 2;
-        }
-
-        .bg-custom {
-            background-color: #6C63FF;
-        }
-
-        .btn-custom {
-            background-color: #3e3d56;
-            color: #fff;
-        }
-
-        .btn-custom:hover {
-            background-color: #33313f;
-            color: #fff;
-        }
-
-        label {
-            color: #fff;
-        }
-
-        a,
-        a:hover {
-            color: #fff;
-            text-decoration: none;
-        }
-
-        a,
-        a:hover {
-            text-decoration: none;
-        }
-
-        @media(max-width: 932px) {
-            .display-none {
-                display: none !important;
-            }
-        }
-    </style>
+    
 </head>
 
 <body>
     <div class="row m-0 h-100">
         <div class="col p-0 text-center d-flex justify-content-center align-items-center display-none">
-            <img src="login.svg" class="w-100">
+            <img src="/image/login.svg" class="w-100">
         </div>
         <div class="col p-0 bg-custom d-flex justify-content-center align-items-center flex-column w-100">
             {{#if IsvalidUndefined}}

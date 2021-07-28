@@ -1,0 +1,20 @@
+.btn-logout {
+    width: 100%;
+    padding: 3px 20px !important;
+    text-align: left !important;
+  }
+  body {
+    padding: 0% 5% 0 5%;
+    margin: 0;
+    font-family: "Nunito Sans";
+    
+}
+.active {
+ color: rgb(209, 12, 12);
+ text-decoration: none;
+}
+.active:hover {
+  color: rgb(255, 255, 255);
+  text-decoration: none;
+}
+

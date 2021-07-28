@@ -1,18 +1,12 @@
 <!doctype html>
 <html lang="en">
   <head>
-<style>
-  .btn-logout {
-  width: 100%;
-  padding: 3px 20px !important;
-  text-align: left !important;
-}
-</style>
     <!-- Bootstrap CSS -->
-    <link href="css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl" crossorigin="anonymous">
-    <link rel="stylesheet" href="css/font-awesome.min.css">
-    <script src="css/jquery.min.js"></script>
-    <script src="css/bootstrap.min.js"></script>
+    <link href="/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl" crossorigin="anonymous">
+    <link rel="stylesheet" href="/css/font-awesome.min.css">
+    <link rel="stylesheet" href="/css/style.css">
+    <script src="/css/jquery.min.js"></script>
+    <script src="/css/bootstrap.min.js"></script>
     <script src="js/socket.io.js"></script>
      <script src="js/chating.js"></script>
 
@@ -25,12 +19,12 @@
       <span class="navbar-toggler-icon"></span>
     </button>
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
-      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-        <li class="nav-item">
-          <a class="nav-link active" aria-current="page" href="user/get_all_users">Home</a>
+      <ul class="me-auto mb-2 mb-lg-0">
+        <li class="nav-item btn btn-outline-danger">
+          <a class="active" aria-current="page" href="user/get_all_users">Home</a>
         </li>
-        <li class="nav-item">
-          <a class="nav-link active" aria-current="page" href="../chating">Chat</a>
+        <li class="btn btn-outline-danger">
+          <a class="active" aria-current="page" href="../chating">Chat</a>
         </li>
       </ul>
     <form action="logout" method="get"><button type="submit" class="btn btn-outline-danger">Log off</button></form>
